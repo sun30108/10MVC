@@ -18,6 +18,12 @@ function fncGetList(currentPage){
 	$("#currentPage").val(currentPage)
 	$("form").attr("mehtd", "POST").attr("action", "/product/listProduct").submit()
 }
+function moveProduct(prodNo){
+	var menu = $(".mN").val().trim()
+	//alert(prodNo)
+	//alert(menu)
+	self.location = "/product/getProduct?prodNo="+prodNo+"&menu="+menu
+}
 
 $(function(){
 	$(".ct_btn01:contains('검색')").on("click", function(){
@@ -55,6 +61,8 @@ $(function(){
 								},
 								success : function(JSONData , status) {
 									//alert(status);
+									//var JSONdata = JSON.stringify(JSONData);
+									//alert(JSONdata)
 									//alert("JSONData : \n"+JSONData);
 									
 									var displayValue = "<h3>"
@@ -63,6 +71,7 @@ $(function(){
 																+"상 품 정 보 : "+JSONData.prodDetail+"<br/>"
 																+"제 조 일 자 : "+JSONData.manuDate+"<br/>"
 																+"등   록   일 : "+JSONData.regDate+"<br/>"
+																+"<input type='button' value='상품페이지' onclick='moveProduct("+prodNo+")'style='float:right; display: block;'>"
 																+"</h3>";							
 									//alert(displayValue);
 									$("h3").remove();

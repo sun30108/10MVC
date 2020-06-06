@@ -133,13 +133,50 @@
 		 $(function() {
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 			//==> 1 과 3 방법 조합 : $("tagName.className:filter함수") 사용함.	
-			 $("td.ct_btn:contains('ID중복확인')").on("click" , function() {
-				//alert($("td.ct_btn:contains('ID중복확인')").html());
-				popWin 
+			 //$("td.ct_btn:contains('ID중복확인')").on("click" , function() {
+			$("input[name='userId']").on("keyup" , function() {
+				 //alert($("td.ct_btn:contains('ID중복확인')").html());
+				/* popWin 
 				= window.open("/user/checkDuplication.jsp",
 											"popWin", 
 											"left=300,top=200,width=300,height=200,marginwidth=0,marginheight=0,"+
-											"scrollbars=no,scrolling=no,menubar=no,resizable=no");
+											"scrollbars=no,scrolling=no,menubar=no,resizable=no"); */
+											var userId = $("input[name='userId']").val().trim()
+											//alert(userId)
+											$.ajax(
+													{
+														url : "/user/json/checkDuplication/"+userId ,
+														method : "GET" ,
+														dataType : "json" ,
+														headers : {
+															"Accept" : "application/json",
+															"Content-Type" : "application/json"
+														},
+														success : function(JSONData, status){
+															//alert(status)
+															var JSONdata = JSON.stringify(JSONData);
+															//alert(JSONdata);
+															//alert(JSONData)
+															//alert(JSONData.result)
+															
+															var result = "";
+															if(JSONData.result == false){
+																result = "불"
+															}
+															
+															var displayValue = "<h6>"
+																+JSONData.userId+" 아이디는 사용 "
+																+result
+																+"가능합니다"
+																+"</h6>";
+																
+															$("h6").remove();
+															$("#underUserId").html(displayValue);
+															
+															
+														}
+														
+													});
 			});
 		});	
 
@@ -187,8 +224,9 @@
 					<td width="105">
 						<input 	type="text" name="userId" class="ct_input_bg" 
 										style="width:100px; height:19px"  maxLength="20" >
+						<div id="underUserId"></div>
 					</td>
-					<td>
+					<!-- <td>
 						<table border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<td width="4" height="21">
@@ -202,7 +240,7 @@
 								</td>
 							</tr>
 						</table>
-					</td>
+					</td> -->
 				</tr>
 			</table>
 		</td>
