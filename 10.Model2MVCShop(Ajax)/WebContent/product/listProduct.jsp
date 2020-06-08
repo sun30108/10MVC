@@ -67,7 +67,7 @@ $(function(){
 									
 									var displayValue = "<h3>"
 																+"상   품   명 : "+JSONData.prodName+"<br/>"
-																+"가         격 : "+JSONData.pdice+"<br/>"
+																+"가         격 : "+JSONData.price+"<br/>"
 																+"상 품 정 보 : "+JSONData.prodDetail+"<br/>"
 																+"제 조 일 자 : "+JSONData.manuDate+"<br/>"
 																+"등   록   일 : "+JSONData.regDate+"<br/>"
@@ -75,7 +75,7 @@ $(function(){
 																+"</h3>";							
 									//alert(displayValue);
 									$("h3").remove();
-									$( "#"+prodName+"" ).html(displayValue);
+									$( "#"+prodNo ).html(displayValue);
 								}
 						});
 						////////////////////////////////////////////////////////////////////////////////////////////
@@ -225,7 +225,7 @@ $(function(){
 		</td>	
 	</tr>
 	<tr>
-		<td id="${product.prodName}" colspan="11" bgcolor="D6D7D6" height="1"></td>
+		<td id="${product.prodNo}" colspan="11" bgcolor="D6D7D6" height="1"></td>
 	</tr>
 	</c:forEach>
 </table>

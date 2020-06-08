@@ -61,31 +61,32 @@ public class ProductController {
 		
 		System.out.println("/product/addProduct : POST");
 		
-		
-		System.out.println("fileName : "+ mf);
-		System.out.println(product);
-		
-		String savePath = "C:\\Users\\sun30\\git\\09MVC\\09.Model2MVCShop(jQuery)\\WebContent\\images\\uploadFiles\\";
-		
-		String originalFileName = mf.getOriginalFilename();
-		long fileSize = mf.getSize();
-		String safeFile = savePath+originalFileName;
-		
-		System.out.println("originalFileName : "+originalFileName);
-		System.out.println("fileSize : "+fileSize);
-		System.out.println("safeFile : "+safeFile);
-		
+		if(mf != null) {
+			System.out.println("fileName : "+ mf);
+			System.out.println(product);
 			
-		try {
-			mf.transferTo(new File(safeFile));
-		} catch(IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+			String savePath = "C:\\Users\\sun30\\git\\09MVC\\09.Model2MVCShop(jQuery)\\WebContent\\images\\uploadFiles\\";
+			
+			String originalFileName = mf.getOriginalFilename();
+			long fileSize = mf.getSize();
+			String safeFile = savePath+originalFileName;
+			
+			System.out.println("originalFileName : "+originalFileName);
+			System.out.println("fileSize : "+fileSize);
+			System.out.println("safeFile : "+safeFile);
+			
+				
+			try {
+				mf.transferTo(new File(safeFile));
+			} catch(IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			product.setFileName(originalFileName);
+		
 		}
-		
-		product.setFileName(originalFileName);
-		
 		productService.addProduct(product);
 		
 		

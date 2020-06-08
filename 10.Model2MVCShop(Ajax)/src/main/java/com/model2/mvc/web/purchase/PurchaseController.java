@@ -1,5 +1,6 @@
 package com.model2.mvc.web.purchase;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -125,6 +126,21 @@ public class PurchaseController {
 		
 		modelAndView.setViewName("/purchase/getPurchase.jsp");
 		modelAndView.addObject("purchase", purchase);
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="getPurchasePrice", method = RequestMethod.GET)
+	public ModelAndView getPurchasePrice(@RequestParam("tranNo") int tranNo) throws Exception{
+		
+		System.out.println("/purchase/getPurchasePrice : GET");
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		int salesStatus = purchaseService.getPurchaseAll(tranNo);
+		
+		modelAndView.setViewName("/purchase/getSalesStatus.jsp");
+		modelAndView.addObject("salesStatus", salesStatus);
 		
 		return modelAndView;
 	}

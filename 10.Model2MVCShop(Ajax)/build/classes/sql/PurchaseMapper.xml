@@ -18,6 +18,7 @@
 		<result property="orderDate" 			column="order_data" 				jdbcType="DATE"  />
 		<result property="divyDate" 			column="dlvy_date" 				jdbcType="DATE"  />
 		<result property="purchaseProd.prodNo"	column="prod_no" 		jdbcType="NUMERIC" />
+		<result property="purchaseProd.price"	column="price" 		jdbcType="NUMERIC" />
 		<result property="buyer.userId" 	column="buyer_id" 		jdbcType="VARCHAR" />
 	</resultMap>
 	
@@ -33,8 +34,9 @@
 	
 	<select id="getPurchase" parameterType="int" resultMap="purchaseSelectMap">
 		SELECT *
-		FROM transaction
-		WHERE tran_no = #{value}
+		FROM transaction t, (SELECT prod_no,price FROM product) p
+		WHERE t.prod_no = p.prod_no
+		<if test="value != 0">AND tran_no = #{value}</if>
 	</select>
 	
 	<update id="updatePurchase" parameterType="purchase">

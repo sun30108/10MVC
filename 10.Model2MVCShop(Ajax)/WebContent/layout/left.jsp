@@ -55,6 +55,12 @@
 				$(window.parent.frames["rightFrame"].document.location).attr("href","/product/listProduct?menu=manage");
 			});
 			
+			$( ".Depth03:contains('매출현황보기')" ).on("click" , function(){
+				
+				//alert( $( ".Depth03:contains('판매상품관리')" ) )
+				$(window.parent.frames["rightFrame"].document.location).attr("href","/purchase/getPurchasePrice?tranNo=0");
+			});
+			
 			$( ".Depth03:contains('상 품 검 색')" ).on("click" , function(){
 				//alert( $( ".Depth03:contains('상 품 검 색')" ).html() ) //Debug
 				$(window.parent.frames["rightFrame"].document.location).attr("href","/product/listProduct?menu=search");
@@ -71,6 +77,8 @@
 				$(window.parent.frames["rightFrame"].document.location).attr("href",history());
 				
 			});
+			
+			
 			
 		});	
 		 
@@ -119,6 +127,12 @@
 				<tr>
 					<td class="Depth03">
 						판매상품관리
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="Depth03">
+						매출현황보기
 					</td>
 				</tr>
 				<tr>

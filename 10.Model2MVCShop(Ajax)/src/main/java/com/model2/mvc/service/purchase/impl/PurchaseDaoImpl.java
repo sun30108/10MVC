@@ -36,6 +36,10 @@ public class PurchaseDaoImpl implements PurchaseDao {
 	public Purchase getPurchase(int tranNo) throws Exception {
 		return sqlSession.selectOne("PurchaseMapper.getPurchase", tranNo);
 	}
+	
+	public List<Purchase> getPurchaseAll(int tranNo) throws Exception {
+		return sqlSession.selectList("PurchaseMapper.getPurchase", tranNo);
+	}
 
 	@Override
 	public Purchase getPurchase2(int ProdNo) throws Exception {

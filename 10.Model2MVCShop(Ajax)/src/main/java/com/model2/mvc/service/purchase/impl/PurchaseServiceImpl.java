@@ -40,6 +40,16 @@ public class PurchaseServiceImpl implements PurchaseService {
 		// TODO Auto-generated method stub
 		return purchaseDao.getPurchase(tranNo);
 	}
+	
+	//PurchaseAll √—∏≈√‚ Price
+	public int getPurchaseAll(int tranNo) throws Exception {
+		List<Purchase> list = purchaseDao.getPurchaseAll(tranNo);
+		int sum = 0;
+		for(int i = 0; i < list.size(); i++) {
+			sum += list.get(i).getPurchaseProd().getPrice();
+		}
+		return sum;
+	}
 
 	@Override
 	public Purchase getPurchase2(int ProdNo) throws Exception {

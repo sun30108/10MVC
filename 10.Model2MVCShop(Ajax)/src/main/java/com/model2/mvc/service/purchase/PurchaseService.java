@@ -1,5 +1,6 @@
 package com.model2.mvc.service.purchase;
 
+import java.util.List;
 import java.util.Map;
 
 import com.model2.mvc.common.Search;
@@ -18,6 +19,9 @@ public interface PurchaseService {
 	
 	//구매정보 조회
 	public Purchase getPurchase2(int ProdNo) throws Exception;
+	
+	//PurchaseAll 총매출 return Price
+	public int getPurchaseAll(int tranNo) throws Exception;
 	
 	//구매리스트 조회
 	public Map<String,Object> getPurchaseList(Search search,String buyerId) throws Exception;
